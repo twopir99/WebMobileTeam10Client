@@ -37,6 +37,9 @@
 		{
 			$("#testButton").click(function()
 			{
+				/* if you run on Android emulator, you have to change the url from localhost to your real IP or 10.0.0.2 */
+				/* This is because Android emulator recognizes the localhost as Android emulator itself, not you local machine */
+				/* 10.0.0.2 is your local machine IP for the emulator */
 				var strInfo="";
 				alert("11111");
 				$('display1').append("<p>sample</p>");
