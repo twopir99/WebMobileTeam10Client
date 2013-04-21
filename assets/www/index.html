@@ -28,47 +28,110 @@
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.css" />
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.js"></script>
-	<script type="text/javascript" src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
 	
-	<title>Hello World</title>
+	<script type="text/javascript" src="./js/login.js"></script>
+	<script type="text/javascript" src="./js/createAccount.js"></script>
 	
-	<script type="text/javascript">
-		$(function()
-		{
-			$("#testButton").click(function()
-			{
-				/* if you run on Android emulator, you have to change the url from localhost to your real IP or 10.0.0.2 */
-				/* This is because Android emulator recognizes the localhost as Android emulator itself, not you local machine */
-				/* 10.0.0.2 is your local machine IP for the emulator */
-				var strInfo="";
-				alert("11111");
-				$('display1').append("<p>sample</p>");
-				$.getJSON("http://localhost:8080/MobileServerSide/SampleSelectJSON.jsp?callback=?",
-				null,
-				function(data){
-					   for(var i=0;i<data.length;i++){
-					    console.log(data[i].ID); 
-					    $('#SoccerPlayerList').append('<li><a href="#"><h3 class="ui-li-heading">'+data[i].ID+'</h3><p class="ui-li-desc">ID '+data[i].Mean+'</p><p class="ui-li-desc">SD '+data[i].SD+'</p></a></li>');
-					   }
-				}
-				);
-				$('#SoccerPlayerList ul').listview("refresh");
-			}
-			);
+	<style type="text/css">
+		.ui-field-contain div.ui-slider-switch { width: 130px;  }
+	</style>
+	
+	<title>Find a partner</title>
+
+	<script lanuage="javscript">
+		function changePage(){
+			
+			location.href="test2.html";
 		}
-		);
 	</script>
 </head>
 <body>
-<div data-role="page">
-  <div data-role="header" data-position="fixed" data-theme="b">
-    <h1>Soccer Player</h1>
-  </div>
-  <button type="button" id="testButton">Click!</button>
-  <div data-role="content">
-     <ul id="SoccerPlayerList">
-    </ul>
-  </div>
+
+<div data-role="page" id="loginPage">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<h1>Log-in</h1>
+	</div>
+	<div data-role="content" data-theme="b">
+   
+		<div data-role="fieldcontain"  >
+			<label for="userid">User ID:</label>
+			<input type="text" name="userid" id="userid" value="" placeholder="userid"/>
+		</div>
+		<div data-role="fieldcontain"  >
+			<label for="password">Password:</label>
+			<input type="password" name="password" id="password" value="" placeholder="password"/>
+		</div>
+		<input type="button" id="loginButton" value="Log-in">
+		<a href="#createAccountPage" data-role="button">Create account</a>
+	</div>
+	<div data-role="footer" data-theme="b">
+		<div data-role="fieldcontain"  >
+			<div id="loginResponse"></div>
+		</div>
+	</div>
+</div>
+
+<div data-role="page" id="createAccountPage" data-add-back-btn="true">
+	
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<h1>Log-in</h1>
+	</div>
+	<div data-role="content" data-theme="b">
+   
+		<div data-role="fieldcontain"  >
+			<label for="reguserid">User ID:</label>
+			<input type="text" name="reguserid" id="reguserid" value="" placeholder="reguserid"/>
+		</div>
+		<div data-role="fieldcontain"  >
+			<label for="regpassword">Password:</label>
+			<input type="password" name="regpassword" id="regpassword" value="" placeholder="regpassword"/>
+		</div>
+		<div data-role="fieldcontain"  >
+			<label for="name">User Name:</label>
+			<input type="text" name="name" id="name" value="" placeholder="name"/>
+		</div>
+		<div data-role="fieldcontain"  >
+			<label for="gender">Gender:</label>
+			<select name="gender" id="gender" data-role="slider">
+				<option value="male">Male</option>
+				<option value="female">Female</option>
+			</select>
+		</div>
+		<div data-role="fieldcontain"  >
+			<label for="age">Age:</label>
+			<input type="number" name="age" id="age" value="" placeholder="age"/>
+		</div>
+		<div data-role="fieldcontain"  >
+			<label for="nationality">Nationality:</label>
+			<select name="nationality" id="nationality">
+			</select>
+		</div>
+		<div data-role="fieldcontain"  >
+			<label for="level">Level:</label>
+			<input type="number" name="level" id="level" value="" placeholder="level"/>
+		</div>
+		<div data-role="fieldcontain"  >
+			<label for="email">E-Mail:</label>
+			<input type="text" name="email" id="email" value="" placeholder="email"/>
+		</div>
+		<div data-role="fieldcontain"  >
+			<label for="phonenumber">Phone Number:</label>
+			<input type="text" name="phonenumber" id="phonenumber" value="" placeholder="phonenumber"/>
+		</div>
+		<input type="button" id="createAccountButton" value="Create account">
+	</div>
+</div>
+
+<div data-role="page" id="main">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<h1>Main Menus</h1>
+	</div>
+	<div data-role="content" data-theme="b">
+		<a href="#editProfile" data-role="button">Edit profile</a>
+		<a href="#schedule" data-role="button">Schedule</a>
+		<a href="#manageCourts" data-role="button">Manage courts</a>
+	</div>
+	
 </div>
 
 </body>
