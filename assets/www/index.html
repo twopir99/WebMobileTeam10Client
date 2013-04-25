@@ -31,6 +31,7 @@
 	
 	<script type="text/javascript" src="./js/login.js"></script>
 	<script type="text/javascript" src="./js/createAccount.js"></script>
+	<script type="text/javascript" src="./js/schedule.js"></script>
 	
 	<style type="text/css">
 		.ui-field-contain div.ui-slider-switch { width: 130px;  }
@@ -125,13 +126,120 @@
 <div data-role="page" id="main">
 	<div data-role="header" data-position="fixed" data-theme="b">
 		<h1>Main Menus</h1>
-	</div>
+	</div> 
 	<div data-role="content" data-theme="b">
 		<a href="editProfile.html" data-role="button">Edit profile</a>
-		<a href="#schedule" data-role="button">Schedule</a>
+		<a href="#schedulePage" data-role="button">Schedule</a>
 		<a href="#manageCourts" data-role="button">Manage courts</a>
+		<a href="#mySchedule" data-role="button">My schedule</a>
 	</div>
 	
+</div>
+
+<div data-role="page" id="schedulePage" data-add-back-btn="true">
+	
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<h1>Schedule</h1>
+	</div>
+	<div data-role="content" data-theme="b">
+   
+		<div data-role="fieldcontain"  >
+			<label for="date">Date:</label>
+			<input type="date" name="date" id="date" value="" placeholder="date"/>
+		</div>
+		<div data-role="fieldcontain"  >
+			<fieldset data-role="controlgroup" data-type="horizontal" >
+			<legend>Time slot: </legend>
+			<input type="checkbox" name="timeslot" id="timeslot1" class="custom" value="7" data-mini="true" />
+			<label for="timeslot1">7:00-8:00</label>
+			<input type="checkbox" name="timeslot" id="timeslot2" class="custom" value="8" data-mini="true" />
+			<label for="timeslot2">8:00-9:00</label>
+			<input type="checkbox" name="timeslot" id="timeslot3" class="custom" value="9" data-mini="true" />
+			<label for="timeslot3">9:00-10:00</label>
+			<input type="checkbox" name="timeslot" id="timeslot4" class="custom" value="10" data-mini="true" />
+			<label for="timeslot4">10:00-11:00</label>
+			<input type="checkbox" name="timeslot" id="timeslot5" class="custom" value="11" data-mini="true" />
+			<label for="timeslot5">11:00-12:00</label>
+			<input type="checkbox" name="timeslot" id="timeslot6" class="custom" value="12" data-mini="true" />
+			<label for="timeslot6">12:00-01:00</label>
+			<input type="checkbox" name="timeslot" id="timeslot7" class="custom" value="01" data-mini="true" />
+			<label for="timeslot7">01:00-02:00</label>
+			
+			</fieldset>
+		</div>
+		<div data-role="fieldcontain"  >
+			<fieldset data-role="controlgroup" data-type="horizontal" >
+			<legend>Level: </legend>
+			<input type="checkbox" name="plevel" id="plevel10" class="custom" value="1.0" data-mini="false" />
+			<label for="plevel10">1.0</label>
+			<input type="checkbox" name="plevel" id="plevel15" class="custom" value="1.5" data-mini="false" />
+			<label for="plevel15">1.5</label>
+			<input type="checkbox" name="plevel" id="plevel20" class="custom" value="2.0" data-mini="false" />
+			<label for="plevel20">2.0</label>
+			<input type="checkbox" name="plevel" id="plevel25" class="custom" value="2.5" data-mini="false" />
+			<label for="plevel25">2.5</label>
+			<input type="checkbox" name="plevel" id="plevel30" class="custom" value="3.0" data-mini="false" />
+			<label for="plevel30">3.0</label>
+			<input type="checkbox" name="plevel" id="plevel35" class="custom" value="3.5" data-mini="false" />
+			<label for="plevel35">3.5</label>
+			<input type="checkbox" name="plevel" id="plevel40" class="custom" value="4.0" data-mini="false" />
+			<label for="plevel40">4.0</label>
+			<input type="checkbox" name="plevel" id="plevel45" class="custom" value="4.5" data-mini="false" />
+			<label for="plevel45">4.5</label>
+			<input type="checkbox" name="plevel" id="plevel50" class="custom" value="5.0" data-mini="false" />
+			<label for="plevel50">5.0</label>
+			<input type="checkbox" name="plevel" id="plevel55" class="custom" value="5.5" data-mini="false" />
+			<label for="plevel55">5.5</label>
+			<input type="checkbox" name="plevel" id="plevel60" class="custom" value="6.0" data-mini="false" />
+			<label for="plevel60">6.0</label>
+			<input type="checkbox" name="plevel" id="plevel65" class="custom" value="6.5" data-mini="false" />
+			<label for="plevel65">6.5</label>
+			<input type="checkbox" name="plevel" id="plevel70" class="custom" value="7.0" data-mini="false" />
+			<label for="plevel70">7.0</label>
+			
+			</fieldset>
+		</div>
+		<div data-role="fieldcontain"  >
+			<label for="pgender">Gender:</label>
+			<select name="pgender" id="pgender">
+				<option value="any">Any</option>
+				<option value="male">Male</option>
+				<option value="female">Female</option>
+			</select>
+		</div>
+		<div data-role="fieldcontain"  >
+			<fieldset data-role="controlgroup" data-type="horizontal" >
+			<legend>Age: </legend>
+			<input type="checkbox" name="page" id="page1" class="custom" value="10" data-mini="false" />
+			<label for="page1">10-13</label>
+			<input type="checkbox" name="page" id="page2" class="custom" value="14" data-mini="false" />
+			<label for="page2">14-17</label>
+			<input type="checkbox" name="page" id="page3" class="custom" value="18" data-mini="false" />
+			<label for="page3">18-39</label>
+			<input type="checkbox" name="page" id="page4" class="custom" value="40" data-mini="false" />
+			<label for="page4">40-54</label>
+			<input type="checkbox" name="page" id="page5" class="custom" value="55" data-mini="false" />
+			<label for="page5">above 55</label>
+			</fieldset>
+			
+		</div>
+		<div data-role="fieldcontain"  >
+			<label for="pnationality">Nationality:</label>
+			<select name="pnationality" id="pnationality">
+			<option value="any">Any</option>
+			</select>
+		</div>
+		<div data-role="fieldcontain"  >
+			<label for="ptype">Double/Single:</label>
+			<select name="ptype" id="ptype">
+				<option value="any">Any</option>
+				<option value="double">Double</option>
+				<option value="single">Single</option>
+			</select>
+		</div>
+		
+		<input type="button" id="makeScheduleButton" value="Make schedule">
+	</div>
 </div>
 
 </body>

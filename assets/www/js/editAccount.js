@@ -1,7 +1,8 @@
 	/* select country names from database when createAccountPage initialize */
 	$(document).on('pageinit', '#editAccountPage',  function(){
-		//alert("Edit account pageinit");
+		alert("Edit account pageinit");
 		 console.log("edit account page init"); 
+		 user_id = ReadCookie("USERID");
 		$.getJSON("http://localhost:8080/MobileServerSide/GetCountryNamesJSON.jsp?callback=?",
 				null,
 				function(data){
@@ -15,9 +16,16 @@
 				null,
 				function(data)//only output the profile of the certain user and put them into the corresponding fields
 	});
-
+		function ReadCookie(cookieName) {
+			 var theCookie=" "+document.cookie;
+			 var ind=theCookie.indexOf(" "+cookieName+"=");
+			 if (ind==-1) ind=theCookie.indexOf(";"+cookieName+"=");
+			 if (ind==-1 || cookieName=="") return "";
+			 var ind1=theCookie.indexOf(";",ind+1);
+			 if (ind1==-1) ind1=theCookie.length; 
+			 return unescape(theCookie.substring(ind+cookieName.length+2,ind1));
+			}
 	$(document).ready(function() {
-		 
 	    //Stops the submit request
 	    $("#editAccountForm").submit(function(e){//what's this form?
 	        e.preventDefault();
