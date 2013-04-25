@@ -5,15 +5,6 @@ $(document).ready(function() {
            e.preventDefault();
     });
     
-    function SetCookie(cookieName,cookieValue,nDays) {
-    	 var today = new Date();
-    	 var expire = new Date();
-    	 if (nDays==null || nDays==0) nDays=1;
-    	 expire.setTime(today.getTime() + 3600000*24*nDays);
-    	 document.cookie = cookieName+"="+escape(cookieValue)
-    	                 + ";expires="+expire.toGMTString();
-    	}
-    
     //checks for the button click event
     $("#loginButton").click(function(e){
             //get the form data and then serialize that
@@ -24,7 +15,7 @@ $(document).ready(function() {
             var password = $("input#password").val();
             dataString = 'userid=' + userid + 
             				'&password=' + password + '';
-            SetCookie("USERID",userid,1);
+            
             //make the AJAX request, dataType is set to json
             //meaning we are expecting JSON data in response from the server
             $.ajax({
@@ -38,7 +29,13 @@ $(document).ready(function() {
                     //our country code was correct so we have some information to display
                 	if(data.length==1){
 						if(data[0].success){
+							//alert(userid);
+							$.cookie('myID', userid);
+							//setCookie('myID', userid);  
+							alert(getCookie('myID'));
+							
 							$.mobile.changePage("#main", {transition:"slideup", reverse:true});
+							
 						} 
 						 //display error message
 						else {
