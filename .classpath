@@ -6,6 +6,5 @@
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry kind="lib" path="/Demo/libs/android-support-v4.jar"/>
 	<classpathentry kind="lib" path="/Demo/libs/cordova-2.5.0.jar"/>
-	<classpathentry kind="lib" path="/Applications/adt-bundle-mac-x86_64-20130219/sdk/platforms/android-17/android.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

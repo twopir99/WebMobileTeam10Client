@@ -6,13 +6,14 @@
 		 user_id = $.cookie('myID');
 		 console.log("id :: " + user_id);
 		 alert("user_id::" + user_id);
-		 $('reguserid').value=user_id;
+		 $('#reguserid').val(user_id);
 		$.getJSON("http://localhost:8080/MobileServerSide/GetCountryNamesJSON.jsp?callback=?",
 				null,
 				function(data){
 					   for(var i=0;i<data.length;i++){
-					    //console.log(data[i].name_en); 
-					    $('#nationality').append('<option value="'+data[i].code+'">'+data[i].name_en+'</option>');
+					    console.log(data[i].name_en); 
+						   //alert(console.log(data[i].name_en));
+					    $('#ednationality').append('<option value="'+data[i].code+'">'+data[i].name_en+'</option>');
 					   }
 				}
 				);
@@ -29,7 +30,7 @@
 		
 	$(document).ready(function() {
 	    //Stops the submit request
-	    $("#editAccountForm").submit(function(e){//what's this form?
+	    $("#editAccountForm").submit(function(e){
 	        e.preventDefault();
 	    });
 	    
