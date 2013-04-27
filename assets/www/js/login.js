@@ -32,7 +32,7 @@ $(document).ready(function() {
 							//alert(userid);
 							$.cookie('myID', userid);
 							//setCookie('myID', userid);  
-							alert(getCookie('myID'));
+							//alert(getCookie('myID'));
 							
 							$.mobile.changePage("#main", {transition:"slideup", reverse:true});
 							
