@@ -1,12 +1,12 @@
 	/* select country names from database when createAccountPage initialize */
 	$(document).on('pageinit', '#schedulePage',  function(){
-		//alert("Create account pageinit");
-		 console.log("schedule page init"); 
+		//alert("Schedule pageinit");
+		user_id = $.cookie('myID');
+		console.log("schedule page init");
 		$.getJSON("http://localhost:8080/MobileServerSide/GetCountryNamesJSON.jsp?callback=?",
 				null,
 				function(data){
 					   for(var i=0;i<data.length;i++){
-					    console.log(data[i].name_en); 
 					    $('#pnationality').append('<option value="'+data[i].code+'">'+data[i].name_en+'</option>');
 					   }
 				}
@@ -27,32 +27,40 @@
 	            dataString = $("#scheduleForm").serialize();
 	            
 	            //get the form data using another method 
-	            var userid = $("input#reguserid").val();
-	            var password = $("input#regpassword").val();
-	            var name = $("input#name").val();
-	            var gender = $("select#gender").val();
-	            var age = $("input#age").val();
-	            var nationality = $("select#nationality").val();
-	            var level = $("input#level").val();
-	            var email = $("input#email").val();
-	            var phonenumber = $("input#phonenumber").val();
+	            var date = $("input#date").val();
+	            var timestart = $('input:radio[name=timestart]:checked').val();
+	            var timeend = $('input:radio[name=timeend]:checked').val();
+	            var plevelarr = [];
+	            $('input[name="plevel"]:checked').each(function(i){
+	                plevelarr[i] = $(this).val();
+	            });
+	            var plevel = plevelarr.join();
+	            var pagearr = [];
+	            $('input[name="page"]:checked').each(function(i){
+	                pagearr[i] = $(this).val();
+	            });
+	            var page = pagearr.join();
+	            var pgender = $("select#pgender").val();
+	            var pnationality = $("select#pnationality").val();
+	            var ptype = $("select#ptype").val();
 	            
-	            dataString = 'userid=' + userid + 
-	            				'&password=' + password +
-	            				'&name=' + name +
-	            				'&gender=' + gender +
-	            				'&age=' + age +
-	            				'&nationality=' + nationality +
-	            				'&level=' + level +
-	            				'&email=' + email +
-	            				'&phonenumber=' + phonenumber + '';
+	            dataString = 'userid=' + user_id + 
+	            				'&date=' + date +
+	            				'&timestart=' + timestart +
+	            				'&timeend=' + timeend +
+	            				'&age=' + page +
+	            				'&gender=' + pgender +
+	            				'&nationality=' + pnationality +
+	            				'&level=' + plevel +
+	            				'&type=' + ptype + '';
 	            
+	    		console.log(dataString); 
 	            
 	            //make the AJAX request, dataType is set to json
 	            //meaning we are expecting JSON data in response from the server
 	            $.ajax({
 	                type: "POST",
-	                url: "http://localhost:8080/MobileServerSide/CreateAccountProcess.jsp?callback=?",
+	                url: "http://localhost:8080/MobileServerSide/ScheduleProcess.jsp?callback=?",
 	                data: dataString,
 	                dataType: "json",
 	                
@@ -61,22 +69,22 @@
 	                    //our country code was correct so we have some information to display
 	                	if(data.length==1){
 							if(data[0].success){
-								$.mobile.changePage("#loginPage", {transition:"slideup", reverse:true});
+								$.mobile.changePage("#main", {transition:"slideup", reverse:true});
 							} 
 							 //display error message
 							else {
-								alert("Creating Account Failed");
+								alert("Schedule Failed");
 							}
 	                	}else{
 	                		//$("#loginResponse").html("ID data has a problem");
-							alert("Your registration data have a problem, contact System Administrator");
+							alert("Your schedule data have a problem, contact System Administrator");
 	                	}
 	                },
 	                
 	                //If there was no resonse from the server
 	                error: function(jqXHR, textStatus, errorThrown){
 	                     console.log("Something really bad happened " + textStatus);
-	                      $("#createAccountResponse").html(jqXHR.responseText);
+	                      $("#scheduleResponse").html(jqXHR.responseText);
 	                },
 	                
 	                //capture the request before it was sent to server
@@ -84,14 +92,14 @@
 	                    //adding some Dummy data to the request
 	                    settings.data += "&dummyData=whatever";
 	                    //disable the button until we get the response
-	                    $('#createAccountButton').attr("disabled", true);
+	                    $('#makeScheduleButton').attr("disabled", true);
 	                },
 	                
 	                //this is called after the response or error functions are finsihed
 	                //so that we can take some action
 	                complete: function(jqXHR, textStatus){
 	                    //enable the button 
-	                    $('#createAccountButton').attr("disabled", false);
+	                    $('#makeScheduleButton').attr("disabled", false);
 	                }
 	      
 	            });        

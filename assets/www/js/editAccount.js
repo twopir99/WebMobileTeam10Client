@@ -14,7 +14,7 @@
 					   for(var i=0;i<data.length;i++){
 					    //console.log(data[i].name_en); 
 						   //alert(console.log(data[i].name_en));
-					    $('select#ednationality').append('<option value="'+data[i].name_en+'">'+data[i].name_en+'</option>');
+					    $('select#ednationality').append('<option value="'+data[i].code+'">'+data[i].name_en+'</option>');
 					   }
 				}
 				);
@@ -35,11 +35,7 @@
             		$('input#name').val(data[0].name);
             		$('select#gender').val(data[0].gender).change();
             		$('input#age').val(data[0].age);
-            		//$('select#ednationality option:selected').val(data[0].nationality)
-            		//$('select#ednationality').val(data[0].nationality).attr("selected", "selected");
-            		//$('select#ednationality').val(data[0].nationality);
-            		$('select#ednationality').val("Angola").attr("selected", "selected");
-            		//$(select[name=ednationality]).val('Angola').attr("selected", "selected");
+            		$('select#ednationality').val(data[0].nationality).change();
             		$('input#level').val(data[0].level);
             		$('input#email').val(data[0].email);
             		$('input#phonenumber').val(data[0].phonenumber);
@@ -48,6 +44,10 @@
 					alert("Your editing process has a problem, contact System Administrator");
             	}
             },
+            error: function(jqXHR, textStatus, errorThrown){
+                console.log("Something really bad happened " + textStatus);
+                 $("#createAccountResponse").html(jqXHR.responseText);
+            }
         }); 
 	});
 		
@@ -83,7 +83,6 @@
 	            				'&level=' + level +
 	            				'&email=' + email +
 	            				'&phonenumber=' + phonenumber + '';
-	            System.out.println(dataString);
 	            
 	            //make the AJAX request, dataType is set to json
 	            //meaning we are expecting JSON data in response from the server
@@ -96,22 +95,8 @@
 	                
 	                //if received a response from the server
 	                success: function( data, textStatus, jqXHR) {
-	                    //our country code was correct so we have some information to display
-	                	if(data.length==1){
-							if(data[0].success){
-								$.mobile.changePage("#loginPage", {transition:"slideup", reverse:true});
-							} 
-							 //display error message
-							else {
-								alert("Saving Account Failed");
-							}
-	                	}else{
-	                		//$("#loginResponse").html("ID data has a problem");
-							alert("Your profile has a problem, contact System Administrator");
-	                	}
+	                    $.mobile.changePage("index.html#main", {transition:"slideup", reverse:true});
 	                },
-	                
-	                //If there was no resonse from the server
 	                error: function(jqXHR, textStatus, errorThrown){
 	                     console.log("Something really bad happened " + textStatus);
 	                      $("#createAccountResponse").html(jqXHR.responseText);
