@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+    <head>
+    
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+	<link rel="stylesheet" type="text/css" href="css/index.css" />
+	
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.css" />
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.js"></script>
+	
+	<script type="text/javascript" src="./js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="./js/level.js"></script>
+	
+	<style type="text/css">
+		.ui-field-contain div.ui-slider-switch { width: 130px;  }
+	</style>
+	
+	<title>Level Test</title>
+
+	<script lanuage="javscript">
+		function changePage(){
+			
+			location.href="test2.html";
+		}
+	</script>
+</head>
+
+<body>
+<div data-role="page" id="levelPage" data-add-back-btn="true">
+	
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<h1>Level Test</h1>
+	</div>
+	<div data-role="content" data-theme="b">
+   
+		<div data-role="fieldcontain"  >
+			<label for="highest">Check your highest level` of experience as a tennis player.</label>
+			<select name="highest" id="highest">
+				<option value="8">World Class Player </option>
+				<option value="7">Professional Satellite/Future or Circuit Player</option>
+				<option value="6">College Team Committed to or Played</option>
+				<option value="5">International or USTA National or Section Ranked</option>
+				<option value="4">Tennis On Campus – USTA sponsored program</option>
+				<option value="3">Played High School</option>
+				<option value="2">Played Recreational Tennis</option>
+				<option value="1">Never Played Tennis</option>
+			</select>
+		</div>
+		
+		<div data-role="fieldcontain"  >
+			<label for="often">How often do you currently play tennis?</label>
+			<select name="often" id="often">
+				<option value="4">Weekly</option>
+				<option value="3">Monthly</option>
+				<option value="2">A few times a year</option>
+				<option value="1">It's been more than a year since I last played</option>
+			</select>
+		</div>
+		<div data-role="fieldcontain"  >
+			<label for="experience">What's your experience with other sports?</label>
+			<select name="experience" id="experience">
+				<option value="4">I regularly play another sport</option>
+				<option value="3">I played another sport competitively in college</option>
+				<option value="2">I played another competitively in high school</option>
+				<option value="1">I haven't played other sports competitively</option>
+			</select>
+		</div>
+		
+		<input type="button" id="submitButton" value="Submit">
+		<input type="button" id="backButton" value="Go back">
+	</div>
+</div>
+
+</body>
+</html>

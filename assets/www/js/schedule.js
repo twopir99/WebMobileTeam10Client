@@ -1,6 +1,5 @@
 	/* select country names from database when createAccountPage initialize */
 	$(document).on('pageinit', '#schedulePage',  function(){
-		//alert("Schedule pageinit");
 		user_id = $.cookie('myID');
 		console.log("schedule page init");
 		$.getJSON("http://localhost:8080/MobileServerSide/GetCountryNamesJSON.jsp?callback=?",
