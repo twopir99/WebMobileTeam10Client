@@ -14,12 +14,8 @@
             	if(data.length>0){
             		for(var i=0;i<data.length;i++){
 					    //console.log(data[i].scheduleid);
-					    $('#schedulelist').append('<p><a href="#mySchedulePage" onClick="getid("data[i].scheduleid");">"'+data[i].date+'"'+data[i].timestart+'"'+data[i].timeend+'</p>');
-					    $('#schedulelistdate').(data[i].date);
-					    function getid(scheduleid){
-					    	$.cookie("scheduleid", scheduleid);
-					    	console.log(scheduleid);
-					    }
+					    $('#schedulelist').append('<p><a href="#mySchedulePage" onClick="getid('+data[i].scheduleid+');">"'+data[i].date+'"'+data[i].timestart+'"'+data[i].timeend+'</p>');
+					    $('#schedulelistdate').append(data[i].date);
             		}
             		
             		
@@ -86,6 +82,12 @@
 	            });        
 	    });
 	    
-
 	 
 	});	
+
+	function getid(scheduleid){
+    	$.cookie("scheduleid", scheduleid);
+    	alert("schedule id " + scheduleid);
+    	console.log(scheduleid);
+    };
+    
