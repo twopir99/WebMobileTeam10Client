@@ -39,7 +39,31 @@
 	<style type="text/css">
 		.ui-field-contain div.ui-slider-switch { width: 130px;  }
 	</style>
-	
+	<style type="text/css">
+		#list ul
+		{
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		#list li
+		{
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		color: #FFFFFF;
+		background : #6699CC;
+		}
+		#list a
+		{
+		display: block;
+		color: #FFFFFF;
+		background-color: #6699CC);
+		padding: 3px 12px 3px 8px;
+		text-decoration: none;
+		border-bottom: 1px solid #fff;
+		}
+	</style>
 	<title>Find a partner</title>
 
 	<script lanuage="javscript">
@@ -313,16 +337,11 @@
 		<h1>My Schedule List</h1>
 	</div>
 	<div data-role="content" data-theme="b">
-    <div data-role="controlgroup" data-type="horizontal">
 		<div data-role="fieldcontain" name="schedulelist" id="schedulelist" >
 		</div>
-		<div data-role="fieldcontain" name="schedulelistdate" id="schedulelistdate" >
-		</div>
-		<div data-role="fieldcontain" name="scheduleliststart" id="scheduleliststart" >
-		</div>
-		<div data-role="fieldcontain" name="schedulelistend" id="schedulelistend" >
-		</div>
-	</div>
+		<div id="list"></div>
+		<div id="listview"></div>
+		
 	</div>
 </div>
 
@@ -334,11 +353,6 @@
 		<h1>My Schedule</h1>
 	</div>
 	<div data-role="content" data-theme="b">
-    <div data-role="controlgroup" data-type="horizontal">
-		<div data-role="fieldcontain"  >
-			<label for="scheduleId">Schedule ID:</label>
-			<input type="text" name="scheduleId" id="scheduleId" class="custom" value="" data-mini="true" />
-		</div>		
 		<div data-role="fieldcontain"  >
 			<label for="date">Date:</label>
 			<input type="text" name="date" id="date" class="custom" value="" data-mini="true" />
@@ -385,7 +399,6 @@
 		</div>
 		
 		<input type="button" id="cancellButton" value="Cancell schedule">
-	</div>
 	</div>
 </div>
 

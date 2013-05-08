@@ -2,50 +2,60 @@
 	$(document).on('pageinit', '#mySchedulePage',  function(){
 		 console.log("my schedule page init"); 
 		 scheduleid = $.cookie('scheduleid');
+		 matchid = $.cookie('matchid');
 		 console.log("scheduleid :: " + scheduleid);
-         dataString = 'userid=' + user_id;
-		
+         dataString = 'scheduleid=' + scheduleid + '&matchid=' + matchid + '';
+         console.log("dataString :: " + dataString);
 		$.ajax({
             type: "POST",
-            url: "http://localhost:8080/MobileServerSide/GetUserSchedule.jsp?callback=?",
+            url: "http://localhost:8080/MobileServerSide/GetScheduleJSON.jsp?callback=?",
             data: dataString,
             dataType: "json",
           //if received a response from the server
             success: function( data, textStatus, jqXHR) {
-            	if(data.length>0){
-            		//for(var i = 2; i<data.length;i+3)
-            		//{
-            		var i=2;
+            	if(data.length=1){
             		console.log(data);
-            		$('input#scheduleId').val(data[i].scheduleid);
-            		$('input#scheduleId').attr('readonly','readonly');
-            		$('input#date').val(data[i].date);
+            		$('input#date').val(data[0].date);
             		$('input#date').attr('readonly','readonly');
-            		$('input#timestart').val(data[i].timestart);
+            		$('input#timestart').val(data[0].timestart);
             		$('input#timestart').attr('readonly','readonly');
-            		$('input#timeend').val(data[i].timeend);
+            		$('input#timeend').val(data[0].timeend);
             		$('input#timeend').attr('readonly','readonly');
-            		$('input#plevel').val(data[i].levelarr);
+            		var levelarr = data[0].level[0].lv;
+            		if(data[0].level.length>1){
+	            		for(var i=1;i<data[0].level.length;i++){
+	            			levelarr = levelarr + "," + data[0].level[i].lv;
+	            		}
+            		}
+            		console.log(levelarr);
+            		$('input#plevel').val(levelarr);
             		$('input#plevel').attr('readonly','readonly');
-            		$('input#page').val(data[i].agearr);
+            		var agearr = data[0].age[0].a;
+            		if(data[0].age.length>1){
+	            		for(var i=1;i<data[0].age.length;i++){
+	            			agearr = agearr + "," + data[0].age[i].a;
+	            		}
+            		}
+            		console.log(agearr);
+            		$('input#page').val(agearr);
             		$('input#page').attr('readonly','readonly');
-            		$('input#pgender').val(data[i].pgender);
+            		$('input#pgender').val(data[0].pgender);
             		$('input#pgender').attr('readonly','readonly');
-            		$('input#pnationality').val(data[i].pnationality);
+            		$('input#pnationality').val(data[0].pnationality);
             		$('input#pnationality').attr('readonly','readonly');
-            		$('input#type').val(data[i].type);
+            		$('input#type').val(data[0].type);
             		$('input#type').attr('readonly','readonly');
-            		$('input#status').val(data[i].status);
+            		$('input#status').val(data[0].status);
             		$('input#status').attr('readonly','readonly');
-            		$('input#statuspush').val(data[i].statuspush);
+            		$('input#statuspush').val(data[0].statuspush);
             		$('input#statuspush').attr('readonly','readonly');
-            		$('input#statusmail').val(data[i].statusmail);
+            		$('input#statusmail').val(data[0].statusmail);
             		$('input#statusmail').attr('readonly','readonly'); 
             		//}
             		
             		
             	}else{
-					alert("Your editing process has a problem, contact System Administrator");
+					alert("This process has a problem, contact System Administrator");
             	}
             },
             error: function(jqXHR, textStatus, errorThrown){
@@ -68,7 +78,6 @@
 	            dataString = $("#myScheduleForm").serialize();
 	            
 	            //get the form data using another method 
-	            var scheduleid =$('input#scheduleId').val();
 	            dataString = 'scheduleid=' + scheduleid +  '';
 	            console.log("scheduleid::"+scheduleid);
 	            //make the AJAX request, dataType is set to json

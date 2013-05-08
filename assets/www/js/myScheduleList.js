@@ -1,4 +1,5 @@
 	/* select country names from database when createAccountPage initialize */
+
 	$(document).on('pageinit', '#myScheduleList',  function(){
 		 console.log("my schedule page init"); 
 		 user_id = $.cookie('myID');
@@ -11,14 +12,32 @@
             dataType: "json",
           //if received a response from the server
             success: function( data, textStatus, jqXHR) {
+            	var content = "<div id=list><ul>";
             	if(data.length>0){
             		for(var i=0;i<data.length;i++){
-					    //console.log(data[i].scheduleid);
-					    $('#schedulelist').append('<p><a href="#mySchedulePage" onClick="getid('+data[i].scheduleid+');">"'+data[i].date+'"'+data[i].timestart+'"'+data[i].timeend+'</p>');
-					    $('#schedulelistdate').append(data[i].date);
+            			var s ="";
+            			if(data[i].status==1){
+            				s = "unmatched";
+            				content+="<li><a href=#mySchedulePage onClick=getid('"+data[i].scheduleid+"','"+data[i].matchid+"');>" + 
+                            "<h3>" + "You have a schedule on " + data[i].date + "</h3>"+
+                            "<h4>" + "Starts from " + data[i].timestart + " And ends at " + data[i].timeend + "</h4>"+
+                            "<p style=color:red;margin-left:5em;><b>"  + "Status : " + s + "</b></p>"+
+                            "</a></li>";
+            			}
+            			else{
+            				s = "matched";
+            				content+="<li><a href=#mySchedulePage onClick=getid('"+data[i].scheduleid+","+data[i].matchid+"');>" + 
+                            "<h3>" + "You have a schedule on " + data[i].date + "</h3>"+
+                            "<h4>" + "Starts from " + data[i].timestart + " And ends at " + data[i].timeend + "</h4>"+
+                            "<p style=color:green;margin-left:5em;><b>" + "Status : " + s + "</b></p>"+
+                            "</a></li>";
+            			}
+					    
             		}
+            		content+="</ul>"
+            		$("#list").append(content);
             		
-            		
+                                   		
             	}else{
 					alert("Your editing process has a problem, contact System Administrator");
             	}
@@ -35,59 +54,17 @@
 	    $("#myScheduleForm").submit(function(e){
 	        e.preventDefault();
 	    });
-	    
-	    //checks for the button click event
-	    $("#cancellButton").click(function(e){
-	           
-	            //get the form data and then serialize that
-	            dataString = $("#myScheduleForm").serialize();
-	            
-	            //get the form data using another method 
-	            var scheduleid =$('input#scheduleId').val();
-	            dataString = 'scheduleid=' + scheduleid +  '';
-	            console.log("scheduleid::"+scheduleid);
-	            //make the AJAX request, dataType is set to json
-	            //meaning we are expecting JSON data in response from the server
-	            
-	            $.ajax({
-	                type: "POST",
-	                url: "http://localhost:8080/MobileServerSide/CancellScheduleProcess.jsp?callback=?",
-	                data: dataString,
-	                dataType: "json",
-	                
-	                //if received a response from the server
-	                success: function( data, textStatus, jqXHR) {
-	                    $.mobile.changePage("index.html#main", {transition:"slideup", reverse:true});
-	                },
-	                error: function(jqXHR, textStatus, errorThrown){
-	                     console.log("Something really bad happened " + textStatus);
-	                      $("#createAccountResponse").html(jqXHR.responseText);
-	                },
-	                
-	                //capture the request before it was sent to server
-	                beforeSend: function(jqXHR, settings){
-	                    //adding some Dummy data to the request
-	                    settings.data += "&dummyData=whatever";
-	                    //disable the button until we get the response
-	                    $('#cancellButton').attr("disabled", true);
-	                },
-	                
-	                //this is called after the response or error functions are finsihed
-	                //so that we can take some action
-	                complete: function(jqXHR, textStatus){
-	                    //enable the button 
-	                    $('#cancellButton').attr("disabled", false);
-	                }
-	      
-	            });        
-	    });
+
 	    
 	 
 	});	
 
-	function getid(scheduleid){
+	function getid(scheduleid,matchid){
     	$.cookie("scheduleid", scheduleid);
+    	$.cookie("matchid", matchid);
     	alert("schedule id " + scheduleid);
+    	alert("match id " + matchid);
     	console.log(scheduleid);
+    	console.log(matchid);
     };
     
