@@ -15,6 +15,7 @@
             success: function( data, textStatus, jqXHR) {
             	if(data.length=1){
             		console.log(data);
+            		console.log(data[0].puserid);
             		$('input#date').val(data[0].date);
             		$('input#date').attr('readonly','readonly');
             		$('input#timestart').val(data[0].timestart);
@@ -50,7 +51,9 @@
             		$('input#statuspush').val(data[0].statuspush);
             		$('input#statuspush').attr('readonly','readonly');
             		$('input#statusmail').val(data[0].statusmail);
-            		$('input#statusmail').attr('readonly','readonly'); 
+            		$('input#statusmail').attr('readonly','readonly');
+            		$('input#puserid').val(data[0].puserid);
+            		$('input#puserid').attr('readonly','readonly');
             		//}
             		
             		
